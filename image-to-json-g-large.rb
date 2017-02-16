@@ -9,7 +9,7 @@ file = ARGV.join(' ')
 def to_layer(default_color, pixels)
 	[
 		'{',
-			'"default_color":' << to_color(default_color) << ',',
+			'"default_color":' << "#{to_color(default_color)},",
 			'"pixels":' << '[',
 				pixels.join(','),
 			']',
