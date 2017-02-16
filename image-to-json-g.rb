@@ -16,15 +16,22 @@ end
 def to_color_hash(color)
 	{
 		"red"=>color[0],
-		"alpha"=>color[3],
 		"green"=>color[1],
 		"blue"=>color[2],
+		"alpha"=>color[3],
 	}
 end
 
 def each_pixel(ary, &block)
 	ary.each.with_index {|obj,x|
 		obj.each.with_index {|color,y|
+			yield x,y,color
+		}
+	}
+end
+def each_pixel_pop(ary, &block)
+	ary.length.times {|x|
+		ary.delete_at(0).each.with_index {|color,y|
 			yield x,y,color
 		}
 	}
@@ -63,7 +70,6 @@ height = i.height
 i = nil
 
 puts "Converting to RGBA..."
-#read: `convert %file% rgba:-`
 image = MiniMagick::Tool::Convert.new do |convert|
 	convert << file
 	convert << "rgba:-"
@@ -72,7 +78,6 @@ end
 
 puts "Slicing and dicing..."
 ary = []
-last_x2 = -4
 height.times {|y|
 	y2 = (width * y * 4)
 	width.times {|x|
@@ -94,7 +99,7 @@ default_color = most_common_color(ary)
 
 puts "Converting to pixels..."
 pixels = []
-each_pixel(ary) {|x,y,color|
+each_pixel_pop(ary) {|x,y,color|
 	next if color == default_color
 	pixels << to_pixel(x,y,color)
 }
