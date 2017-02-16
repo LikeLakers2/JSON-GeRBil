@@ -1,5 +1,7 @@
 # JSON-GeRBil
-A script thrown together for an Image-to-[JSON-G](https://github.com/Roadcrosser/JSON-G)-to-Image converter. Though this is a **work-in-progress**, it should be able to play nicely with other converters that follow [the JSON-G spec](https://github.com/Roadcrosser/JSON-G/blob/master/spec.md). (WIP)
+A script thrown together for an Image-to-[JSON-G](https://github.com/Roadcrosser/JSON-G)-to-Image converter. Though this is a **work-in-progress**, it should be able to play nicely with other converters that follow [the JSON-G spec](https://github.com/Roadcrosser/JSON-G/blob/master/spec.md).
+
+Though you'll likely find that [Jsong](https://github.com/fwrs/Jsong) works better for you if you use only PNG, this script is guaranteed to work with anything ImageMagick is capable of reading, which means no need to waste your time converting to PNG first. :)
 
 ```
 C:\Users\Michelle\Desktop\json-gerbil>ruby image-to-json-g.rb 00f.png
