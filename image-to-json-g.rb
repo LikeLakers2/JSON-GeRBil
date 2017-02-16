@@ -52,7 +52,7 @@ MiniMagick.configure do |config|
 	
 	# If you're having trouble with tools not being found, uncomment this next line
 	# and place the required files within the same directory as this script.
-	config.cli_path = __dir__
+	#config.cli_path = __dir__
 end
 
 time_started = Time.now.to_f
