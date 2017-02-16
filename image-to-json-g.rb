@@ -60,6 +60,7 @@ time_started = Time.now.to_f
 i = MiniMagick::Image.new(file)
 width = i.width
 height = i.height
+i = nil
 
 puts "Converting to RGBA..."
 #read: `convert %file% rgba:-`
@@ -77,11 +78,6 @@ height.times {|y|
 	width.times {|x|
 		ary[x] ||= []
 		x2 = (y2 + (x * 4))
-		unless last_x2 + 4 == x2
-			throw 'woah'
-		else
-			last_x2 = x2
-		end
 		bytes_to_grab = x2..(x2+3)
 		ary[x][y] = begin
 									image[bytes_to_grab].bytes
@@ -118,7 +114,7 @@ assembly = {
 		}
 	]
 }
-pixels = []
+pixels = nil
 
 puts "Generating the JSON..."
 assembly = JSON.generate(assembly)
