@@ -17,12 +17,13 @@ Done. Took 4.790820837020874 seconds.
 
 ## Prerequesites.
 - The [mini_magick](https://rubygems.org/gems/mini_magick) gem.
-- The [json](https://rubygems.org/gems/json) gem.
+- The [json](https://rubygems.org/gems/json) gem. (Unless you're using the large converter)
 - ImageMagick installed in a place where Ruby can find it (with legacy tools on windows because mini_magick is a dumb)
   - And because ruby is dumb, it doesn't check the current directory if you intend to just place the tools there. Uncomment [line 55 of image-to-json-g.rb](image-to-json-g.rb#L55) to fix this, but only if you are running the tools from the same directory.
-- A fuckton of RAM if you plan to process complex images ~~because why do you give a fuck about efficiency if you're running this~~. Yes I'll **try** to lower it later.
+- A fuckton of RAM if you plan to process complex images (that is, pictures with lots of colors) ~~because why do you give a fuck about efficiency if you're running this~~.
+  - On that note, if you DO plan to process complex images, then I recommend you try using [image-to-json-g-large.rb](image-to-json-g-large.rb) as this removes the JSON gem and all the hashing, which saves on RAM quite a bit and can help to avoid those pesky out-of-memory errors that the JSON gem can throw.
 
-If you feel the need to run everything within a single directory, these files from a static portable windows download worked for me for the usual PNG and JPG files:
+If you feel the need to run everything within a single directory, these files from a static portable windows download of ImageMagick worked for me for the usual PNG and JPG files:
 - `convert.exe`
 - `identify.exe`
 - `colors.xml`
